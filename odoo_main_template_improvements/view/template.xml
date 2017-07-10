@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="web_view_editor_assets_backend_improvements" inherit_id="web_view_editor.assets_backend">
+            <link rel="stylesheet" href="/web_view_editor/static/src/css/view_editor.css" position="after">
+                <link rel="stylesheet" href="/odoo_main_template_improvements/static/src/css/custom-template.css"/>
+            </link>
+        </template>
+    </data>
+</openerp>
