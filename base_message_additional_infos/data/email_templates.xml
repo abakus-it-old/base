@@ -45,9 +45,9 @@
                 </p>
                 % endif
 
-                % if object.get_partner_name(['project.task', 'project.issue']):
+                % if object.get_partner_name(['project.task', 'project.issue', 'crm.lead']):
                 <p style="padding: 5px 10px; font-size: 12px;">
-                Partner : <strong>${object.get_partner_name(['project.task', 'project.issue'])}</strong>
+                Partner : <strong>${object.get_partner_name(['project.task', 'project.issue', 'crm.lead'])}</strong>
                 </p>
                 % endif
             </td>
