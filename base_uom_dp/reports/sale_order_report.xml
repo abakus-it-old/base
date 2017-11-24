@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_saleorder_document_uom_dp" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//span[@t-field='l.product_uom_qty']" position="replace">
+                <span t-esc="l.product_uom.getQuantityWithPrecision(l.product_uom_qty)"/>
+            </xpath>
+        </template>
+
+        <template id="report_invoice_document_uom_dp" inherit_id="account.report_invoice_document">
+            <xpath expr="//span[@t-field='l.quantity']" position="replace">
+                <span t-esc="l.uom_id.getQuantityWithPrecision(l.quantity)"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>
