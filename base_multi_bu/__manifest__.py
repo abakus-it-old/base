@@ -11,5 +11,7 @@
     ],
     'website': "http://www.abakusitsolutions.eu",
     'category': 'Business Unit',
-    'data': [],
+    'data': [
+        'views/business_unit_view.xml',
+    ],
 }
