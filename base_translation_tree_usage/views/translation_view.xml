@@ -6,8 +6,16 @@
             <field name="model">ir.translation</field>
             <field name="inherit_id" ref="base.view_translation_dialog_tree"/>
             <field name="arch" type="xml">
-                <xpath expr="//tree" position="attributes">
-                    <attribute name="create">true</attribute>
+                <xpath expr="//tree" position="replace">
+                    <tree string="Translations" editable="top" create="true">
+                        <field name="source" />
+                        <field name="value" />
+                        <field name="name" />
+                        <field name="lang" />
+                        <field name="type" />
+                        <field name="state" />
+                        <field name="res_id" />
+                    </tree>
                 </xpath>
             </field>
         </record>
