@@ -16,10 +16,10 @@ class BusinessUnit(models.Model):
         journal_id = self.env['account.journal'].search([('id', '=', journal)])
         return journal_id
 
-    name = fields.Char(required=True)
+    name = fields.Char(related='partner_id.name', string='Business Unit Name', required=True, store=True)
     company_id = fields.Many2one('res.company', 'Company', required=True)
     description = fields.Text()
-    partner_id = fields.Many2one('res.partner', 'Partner')
+    partner_id = fields.Many2one('res.partner', string='Partner', required=True)
     user_ids = fields.Many2many('res.users', 'business_unit_users_rel', 'bu_id', 'user_id', string='Accepted Users')
     journal_id = fields.Many2one('account.journal',
                                  string="Accounting Journal",

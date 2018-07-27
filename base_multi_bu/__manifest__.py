@@ -11,7 +11,14 @@
     ],
     'website': "http://www.abakusitsolutions.eu",
     'category': 'Business Unit',
+    'qweb': [
+        'static/src/xml/base.xml',
+    ],
     'data': [
         'views/business_unit_view.xml',
+        'views/webclient_templates.xml',
+        'views/res_users.xml',
     ],
+    'installable': True,
+    'application': False,
 }
