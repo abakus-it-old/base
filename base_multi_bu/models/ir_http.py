@@ -12,7 +12,7 @@ class HttpBusinessUnit(models.AbstractModel):
         session_info = super(HttpBusinessUnit, self).session_info()
         user = request.env.user
         # TODO: add a base.group_multi_bu
-        display_switch_business_unit_menu = user.has_group('base.group_multi_company') and len(user.business_unit_ids) > 1
+        display_switch_business_unit_menu = len(user.business_unit_ids) > 1
         session_info['business_unit_id'] = request.env.user.business_unit_id.id if request.session.uid else None
         if display_switch_business_unit_menu:
             session_info['user_business_units'] = {
