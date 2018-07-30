@@ -13,6 +13,8 @@ It is composed of the following elements:
 * a single partner entry used as a place holder for name, email, address and such.
 * an accounting journal
 
+At setting time and as administrator you will be able to assign more than one BU to a user while setting one of them as the current one.
+
 Users belonging to more than one BU will see a BU Switcher widget appear in the top menu bar. This widget will allow them to switch between BUs and thus change the set of rule governing their access to data.
 
 Installation notes
