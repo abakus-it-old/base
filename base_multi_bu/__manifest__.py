@@ -15,9 +15,12 @@
         'static/src/xml/base.xml',
     ],
     'data': [
+        'data/ir_rule.xml',
+
         'views/business_unit_view.xml',
         'views/webclient_templates.xml',
         'views/res_users.xml',
+        'views/res_partner.xml',
     ],
     'installable': True,
     'application': False,
