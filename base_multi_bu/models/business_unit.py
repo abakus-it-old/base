@@ -26,3 +26,24 @@ class BusinessUnit(models.Model):
                                  required=True,
                                  default=lambda self: self._get_default_journal())
     sequence = fields.Integer(help='Used to order BUs in the switcher', default=10)
+
+    @api.model
+    def create(self, vals):
+        if not vals.get('name') or vals.get('partner_id'):
+            self.clear_caches()
+            return super(BusinessUnit, self).create(vals)
+        partner = self.env['res.partner'].create({
+            'name': vals['name'],
+            'is_company': False,
+            'customer': False,
+        })
+        vals['partner_id'] = partner.id
+        self.clear_caches()
+        business_unit = super(BusinessUnit, self).create(vals)
+        partner.write({'business_unit_id': business_unit.id})
+        return business_unit
+
+    @api.multi
+    def write(self, values):
+        self.clear_caches()
+        return super(BusinessUnit, self).write(values)
