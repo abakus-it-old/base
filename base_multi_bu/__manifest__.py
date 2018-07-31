@@ -15,6 +15,8 @@
         'static/src/xml/base.xml',
     ],
     'data': [
+        'security/ir.model.access.csv',
+
         'data/ir_rule.xml',
 
         'views/business_unit_view.xml',
