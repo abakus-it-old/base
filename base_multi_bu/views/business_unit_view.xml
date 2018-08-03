@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- BU form view -->
+    <record id="view_business_unit_form" model="ir.ui.view">
+        <field name="name">business.unit.form</field>
+        <field name="model">business.unit</field>
+        <field name="arch" type="xml">
+            <form string="Business Unit">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <notebook colspan="4">
+                        <page string="General Information">
+                            <group>
+                                <group>
+                                    <field name="partner_id" readonly="1" required="0" groups="base.group_no_one"/>
+                                    <field name="company_id" />
+                                    <field name="journal_id" />
+                                </group>
+                                <group>
+                                    <field name="description"/>
+                                    <field name="sequence" invisible="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- BU tree view -->
+    <record id="view_business_unit_tree" model="ir.ui.view">
+        <field name="name">business.unit.tree</field>
+        <field name="model">business.unit</field>
+        <!--field name="field_parent">child_ids</field-->
+        <field name="arch" type="xml">
+            <tree string="Business Units">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- BU tree view action -->
+    <record id="action_business_unit_tree" model="ir.actions.act_window">
+        <field name="name">Business Units</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">business.unit</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('id','=',active_id)]</field>
+    </record>
+
+    <!-- BU menu form view action -->
+    <record id="action_business_unit_form" model="ir.actions.act_window">
+        <field name="name">Business Units</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">business.unit</field>
+        <field name="view_type">form</field>
+        <field name="help">Create and manage business units.</field>
+    </record>
+
+    <!-- BU menu in Settings > Users -->
+    <menuitem action="action_business_unit_form" id="menu_action_business_unit_form" parent="base.menu_users"/>
+
+    <!-- BU accessing tree view -->
+    <record id="ir_open_business_unit" model="ir.values">
+        <field eval="'tree_but_open'" name="key2"/>
+        <field eval="'business.unit'" name="model"/>
+        <field name="name">Business Units</field>
+        <field eval="'ir.actions.act_window,%d'%action_business_unit_tree" name="value"/>
+    </record>
+</odoo>

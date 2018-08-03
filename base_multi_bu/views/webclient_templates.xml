@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- inherit from web assets backend -->
+    <template id="assets_backend" name="base_multi_bu_assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <!-- BU widget style -->
+            <link rel="stylesheet" type="text/less" href="/base_multi_bu/static/src/less/navbar.less"/>
+            <!-- BU widget js -->
+            <script type="text/javascript" src="/base_multi_bu/static/src/js/switch_business_unit_menu.js"></script>
+        </xpath>
+    </template>
+</odoo>

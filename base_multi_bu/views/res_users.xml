@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_user_business_unit_form" model="ir.ui.view">
+        <field name="name">res.users.business.unit.form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/field[@name='groups_id']" position="before">
+                <group string="Multi Business Units" attrs="{'invisible': [('business_units_count', '&lt;=', 1)]}">
+                    <field string="Allowed Business Units" name="business_unit_ids" widget="many2many_tags"/>
+                    <field string="Current Business Unit" name="business_unit_id" context="{'user_preference': 0}"/>
+                    <field string="Business units count" name="business_units_count" invisible="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
