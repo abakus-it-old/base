@@ -35,6 +35,11 @@ class MailComposeMessage(models.TransientModel):
     def getCompanyAttachments(self, template_id, partner_id, company_id):
         domain = [('mail_template_ids', '=', template_id)]
 
+        attachments = []
+        # Check here if partner should receive the docs
+        if not partner_id.send_attachments or (partner_id.parent_id and not partner_id.parent_id.send_attachments):
+            return attachments
+
         # Language
         if partner_id:
             domain.append(('|'))
@@ -46,7 +51,6 @@ class MailComposeMessage(models.TransientModel):
             domain.append(('company_id', '=', company_id.id))
 
         attachment_settings = self.env['res.company.attachment'].search(domain)
-        attachments = []
         for setting in attachment_settings:
             for attachment in setting.attachments_ids:
                 attachments.append(attachment.id)
@@ -55,6 +59,8 @@ class MailComposeMessage(models.TransientModel):
     @api.multi
     def onchange_template_id(self, template_id, composition_mode, model, res_id):
         values = super(MailComposeMessage, self).onchange_template_id(template_id, composition_mode, model, res_id)
+
+        # Check here if partner should receive the docs
 
         company_id = False
         partner_id = False
