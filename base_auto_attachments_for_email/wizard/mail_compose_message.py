@@ -69,8 +69,9 @@ class MailComposeMessage(models.TransientModel):
             company_id = data.company_id
         if data.fields_get('partner_id'):
             partner_id = data.partner_id
-        
-        already_attached = values['value']['attachment_ids'][0][2]
+
+        if 'attachment_ids' in values['value']:
+            already_attached = values['value']['attachment_ids'][0][2]
         already_attached += self.getCompanyAttachments(template_id, partner_id, company_id)
         values['value'].setdefault('attachment_ids', list()).append(already_attached)
         return values
