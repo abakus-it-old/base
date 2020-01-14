@@ -19,8 +19,9 @@ class mail_message_improved(models.Model):
         related = self._get_related()
 
         # Check if related is kind of Task or Issue
-        if related and self.model in ['project.task', 'project.issue'] and related.project_id:
-            return related.project_id.name
+        if related and self.model in ['project.task', 'project.issue']:
+            if related.project_id:
+                return related.project_id.name
         return False
 
     @api.model
@@ -31,6 +32,7 @@ class mail_message_improved(models.Model):
         field_ids = self.env['ir.model.fields'].search([('model_id', '=', self.model)])
         if related:
             for field in field_ids:
-                if field.name == 'partner_id' and related.partner_id.name:
-                    return related.partner_id.display_name
+                if field.name == 'partner_id':
+                    if related.partner_id.name:
+                        return related.partner_id.display_name
         return False
