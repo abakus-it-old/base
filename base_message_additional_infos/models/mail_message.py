@@ -9,25 +9,28 @@ class mail_message_improved(models.Model):
     _inherit = 'mail.message'
 
     @api.model
-    def _get_related(self, condition=False):
+    def _get_related(self):
         if not self.model:
-            return False
-        if not condition:
-            condition = [self.model]
-        if self.model not in condition:
             return False
         return self.env[self.model].search([('id', '=', self.res_id)])
 
     @api.model
-    def get_project_name(self, condition=False):
-        related = self._get_related(condition)
-        if related and related.project_id and related.project_id.name:
+    def get_project_name(self):
+        related = self._get_related()
+
+        # Check if related is kind of Task or Issue
+        if related and self.model in ['project.task', 'project.issue'] and related.project_id:
             return related.project_id.name
         return False
 
     @api.model
-    def get_partner_name(self, condition=False):
-        related = self._get_related(condition)
-        if related and related.partner_id and related.partner_id.name:
-            return related.partner_id.name
+    def get_partner_name(self):
+        related = self._get_related()
+
+        # Check if related model has "partner_id" as field
+        field_ids = self.env['ir.model.fields'].search([('model_id', '=', self.model)])
+        if related:
+            for field in field_ids:
+                if field.name == 'partner_id' and related.partner_id.name:
+                    return related.partner_id.display_name
         return False
