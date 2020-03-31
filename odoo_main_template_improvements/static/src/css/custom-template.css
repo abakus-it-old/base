@@ -1,15 +1,34 @@
+.o_application_switcher {
+  background: aquamarine;
+}
+
+.o_application_switcher .o_apps .o_app .o_caption {
+  color: yellow;
+}
+
+html .o_web_client {
+  font-family: "Comic Sans MS";
+}
 /* Nav-bar menu */
 .navbar-inverse {
-  background-color: #000000;
+  background-color: yellow;
   border-color: #000000;
+}
+
+.btn-primary {
+  background-color: cyan;
 }
 
 .o_web_client .navbar .o_menu_toggle:hover {
   background-color: #000000;
 }
 
+.o_control_panel .breadcrumb > li > a {
+  color: red;
+}
+
 .navbar-inverse .navbar-nav > li > a {
-  color: #E7E7E7;
+  color: blue;
 }
 
 .navbar-inverse .navbar-nav > .active > a, .oe_menu_toggler:hover, .navbar-inverse .navbar-nav > .active > a:hover {
